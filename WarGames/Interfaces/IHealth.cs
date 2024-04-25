@@ -8,7 +8,7 @@ namespace WarGames.Interfaces
 {
     internal interface IHealth
     {
-        private int Units;
+        int Units { get; }
 
         public void TakeDamage(int damage);
         public void GainUnits(int units);
