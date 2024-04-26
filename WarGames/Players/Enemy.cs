@@ -46,44 +46,47 @@ namespace WarGames.Players
         }
 
         // Custom attack methods
-        public void InfantryAttack()
+        public void InfantryAttack(Player player)
         {
             // Infantry attack damages for 1/4 of remaining units
             int damage = Units / 4;
-            Console.WriteLine($"Enemy1 attacks with infantry, dealing {damage} damage.");
+            Console.WriteLine($"Enemy1 attacks with infantry, dealing {damage} damage.\n\n");
+            Console.WriteLine("|\\                |\\                |\\                |\\\r\n   || .---.          || .---.          || .---.          || .---.\r\n   ||/_____\\         ||/_____\\         ||/_____\\         ||/_____\\\r\n   ||( '.' )         ||( '.' )         ||( '.' )         ||( '.' )\r\n   || \\_-_/_         || \\_-_/_         || \\_-_/_         || \\_-_/_\r\n   :-\"`'V'//-.       :-\"`'V'//-.       :-\"`'V'//-.       :-\"`'V'//-.\r\n  / ,   |// , `\\    / ,   |// , `\\    / ,   |// , `\\    / ,   |// , `\\\r\n / /|Ll //Ll|| |   / /|Ll //Ll|| |   / /|Ll //Ll|| |   / /|Ll //Ll|| |\r\n/_/||__//   || |  /_/||__//   || |  /_/||__//   || |  /_/||__//   || |\r\n\\ \\/---|[]==|| |  \\ \\/---|[]==|| |  \\ \\/---|[]==|| |  \\ \\/---|[]==|| |\r\n \\/\\__/ |   \\| |   \\/\\__/ |   \\| |   \\/\\__/ |   \\| |   \\/\\__/ |   \\| |\r\n /\\|_   | Ll_\\ |   /|/_   | Ll_\\ |   /|/_   | Ll_\\ |   /|/_   | Ll_\\ |\r\n `--|`^\"\"\"^`||_|   `--|`^\"\"\"^`||_|   `--|`^\"\"\"^`||_|   `--|`^\"\"\"^`||_|\r\n    |   |   ||/       |   |   ||/       |   |   ||/       |   |   ||/\r\n    |   |   |         |   |   |         |   |   |         |   |   |\r\n    |   |   |         |   |   |         |   |   |         |   |   |\r\n    |   |   |         |   |   |         |   |   |         |   |   |\r\n    L___l___J         L___l___J         L___l___J         L___l___J\r\n     |_ | _|           |_ | _|           |_ | _|           |_ | _|\r\njgs (___|___)         (___|___)         (___|___)         (___|___)");
             TakeDamage(damage);
         }
 
-        public void MissileStrike()
+        public void MissileStrike(Player player)
         {
             // Missile strike damages for half of remaining units
             int damage = Units / 2;
-            Console.WriteLine($"Enemy1 launches a missile strike, dealing {damage} damage.");
+            Console.WriteLine($"Enemy1 launches a missile strike, dealing {damage} damage.\n\n");
+            Console.WriteLine("       /|,\r\n        / /,-/\r\n       .!//_/\r\n      / / |\r\n     /_  /\r\n    /: `/\r\n   /' `/\r\n   | ,'\r\n   '       ");
             TakeDamage(damage);
         }
 
-        public void TankBlitz()
+        public void TankBlitz(Player player)
         {
             // Tank blitz damages for 3/4 of remaining units
             int damage = (Units * 3) / 4;
-            Console.WriteLine($"Enemy1 executes a tank blitz, dealing {damage} damage.");
+            Console.WriteLine($"Enemy1 executes a tank blitz, dealing {damage} damage.\n\n");
+            Console.WriteLine("     \\ O\r\n       _\\--__\r\n      /  USR \\_______\r\n    __|_______|------'\r\n.  //------------\\\\\r\n....\\____________/\r\n");
             TakeDamage(damage);
         }
 
         // Method to choose a random attack
-        public void ChooseRandomAttack()
+        public void ChooseRandomAttack(Player player)
         {
             int attackIndex = random.Next(4); // Generate a random number between 0 and 3
             switch (attackIndex)
             {
                 case 0:
-                    InfantryAttack();
+                    InfantryAttack(player);
                     break;
                 case 1:
-                    MissileStrike();
+                    MissileStrike(player);
                     break;
                 case 2:
-                    TankBlitz();
+                    TankBlitz(player);
                     break;
                 case 3:
                     // Calculate the units gained (1/4 of remaining units)
