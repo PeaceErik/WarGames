@@ -55,19 +55,64 @@ namespace WarGames.GameManagement
 
             Console.WriteLine($"Country: {player.Country} | Army-size: {player.Units} Units | Economy: {player.Money} m. $");
 
-            Console.WriteLine("\n\n Press any button when you are ready to proceed...\n\n");
+            Console.WriteLine("\n\nWe are going to war with Russia! \n\n Press any button when you are ready to proceed...\n\n");
+            Console.ReadKey();
+            Console.Clear();
 
-            while (player.Units > 0)
+            // Start the battle
+            StartBattle(player);
+
+        }
+
+        private static void StartBattle(Player player)
+        {
+            Console.WriteLine("\n***** Battle Starts *****");
+
+            Enemy1 enemy = new Enemy1(); // Create the enemy
+
+            // Battle loop
+            while (player.Units > 0 && enemy.Units > 0)
             {
+                
+                Console.WriteLine("\n***** Player's Turn *****");
+                // Display player and enemy units at the beginning of each turn
+                Console.WriteLine($"\n{player.Country}'s remaining units: {player.Units}");
+                Console.WriteLine($"{enemy.Country}'s remaining units: {enemy.Units}");
+                Console.WriteLine("*****************************\n\n");
+                player.ShowAvailableActions();
+                int playerChoice = int.Parse(Console.ReadLine());
+                player.PerformAction(playerChoice, enemy);
+                Console.ReadKey();
+                
 
+
+                // Check if the enemy is defeated
+                if (enemy.Units <= 0)
+                {
+                    Console.WriteLine("Enemy defeated! You win!");
+                    break;
+                }
+
+                // Enemy's turn
+                Console.Clear();
+                Console.WriteLine("\n***** Enemy's Turn *****");
+                // Display player and enemy units at the beginning of each turn
+                Console.WriteLine($"\n{player.Country}'s remaining units: {player.Units}");
+                Console.WriteLine($"{enemy.Country}'s remaining units: {enemy.Units}");
+                Console.WriteLine("*****************************\n\n");
+                enemy.ChooseRandomAttack(player);
+                Console.ReadKey();
+                Console.Clear();
+
+                // Check if the player is defeated
                 if (player.Units <= 0)
                 {
-                    Console.WriteLine("***** GAME OVER *****\n\n" +
-                        $"You've lost the war General {lastName}");
+                    Console.WriteLine("Player defeated! You lose!");
                     break;
                 }
             }
 
+            Console.WriteLine("\n***** Battle Ends *****");
         }
     }
 }
